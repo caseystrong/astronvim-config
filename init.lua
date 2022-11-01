@@ -1,5 +1,4 @@
 local config = {
-
   -- Configure AstroNvim updates
   updater = {
     remote = "origin", -- remote to use
@@ -103,6 +102,7 @@ local config = {
           }
         end,
       },
+      { "mechatroner/rainbow_csv" },
     },
     -- All other entries override the setup() call for default plugins
     ["null-ls"] = function(config)
@@ -117,16 +117,16 @@ local config = {
         null_ls.builtins.formatting.black,
       }
       -- set up null-ls's on_attach function
-      config.on_attach = function(client)
-        -- NOTE: You can remove this on attach function to disable format on save
-        if client.resolved_capabilities.document_formatting then
-          vim.api.nvim_create_autocmd("BufWritePre", {
-            desc = "Auto format before save",
-            pattern = "<buffer>",
-            callback = vim.lsp.buf.formatting_sync,
-          })
-        end
-      end
+      -- config.on_attach = function(client)
+      -- NOTE: You can remove this on attach function to disable format on save
+      -- if client.resolved_capabilities.document_formatting then
+      -- vim.api.nvim_create_autocmd("BufWritePre", {
+      -- desc = "Auto format before save",
+      -- pattern = "<buffer>",
+      -- callback = vim.lsp.buf.formatting_sync,
+      -- })
+      -- end
+      -- end
       --config.debug = true
       return config -- return final config table
     end,
@@ -206,6 +206,7 @@ local config = {
       --     },
       --   },
       -- },
+      pyright = { settings = { python = { analysis = { typeCheckingMode = "off" } } } },
     },
   },
 
@@ -281,5 +282,4 @@ local config = {
     -- }
   end,
 }
-
 return config
